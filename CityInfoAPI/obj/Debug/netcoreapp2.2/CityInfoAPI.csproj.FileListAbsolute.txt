@@ -1,0 +1,14 @@
+C:\Users\quan.le\Desktop\demo\CityInfo\CityInfoAPI\bin\Debug\netcoreapp2.2\CityInfoAPI.deps.json
+C:\Users\quan.le\Desktop\demo\CityInfo\CityInfoAPI\bin\Debug\netcoreapp2.2\CityInfoAPI.runtimeconfig.json
+C:\Users\quan.le\Desktop\demo\CityInfo\CityInfoAPI\bin\Debug\netcoreapp2.2\CityInfoAPI.runtimeconfig.dev.json
+C:\Users\quan.le\Desktop\demo\CityInfo\CityInfoAPI\bin\Debug\netcoreapp2.2\CityInfoAPI.dll
+C:\Users\quan.le\Desktop\demo\CityInfo\CityInfoAPI\bin\Debug\netcoreapp2.2\CityInfoAPI.pdb
+C:\Users\quan.le\Desktop\demo\CityInfo\CityInfoAPI\obj\Debug\netcoreapp2.2\CityInfoAPI.csprojAssemblyReference.cache
+C:\Users\quan.le\Desktop\demo\CityInfo\CityInfoAPI\obj\Debug\netcoreapp2.2\CityInfoAPI.csproj.CoreCompileInputs.cache
+C:\Users\quan.le\Desktop\demo\CityInfo\CityInfoAPI\obj\Debug\netcoreapp2.2\CityInfoAPI.RazorAssemblyInfo.cache
+C:\Users\quan.le\Desktop\demo\CityInfo\CityInfoAPI\obj\Debug\netcoreapp2.2\CityInfoAPI.RazorAssemblyInfo.cs
+C:\Users\quan.le\Desktop\demo\CityInfo\CityInfoAPI\obj\Debug\netcoreapp2.2\CityInfoAPI.AssemblyInfoInputs.cache
+C:\Users\quan.le\Desktop\demo\CityInfo\CityInfoAPI\obj\Debug\netcoreapp2.2\CityInfoAPI.AssemblyInfo.cs
+C:\Users\quan.le\Desktop\demo\CityInfo\CityInfoAPI\obj\Debug\netcoreapp2.2\CityInfoAPI.RazorTargetAssemblyInfo.cache
+C:\Users\quan.le\Desktop\demo\CityInfo\CityInfoAPI\obj\Debug\netcoreapp2.2\CityInfoAPI.dll
+C:\Users\quan.le\Desktop\demo\CityInfo\CityInfoAPI\obj\Debug\netcoreapp2.2\CityInfoAPI.pdb
