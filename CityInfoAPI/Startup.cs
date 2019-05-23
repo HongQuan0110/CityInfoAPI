@@ -28,8 +28,8 @@ namespace CityInfoAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IMailService, LocalMailService>();
-       
-            
+
+            services.AddScoped<ICityInfoRepository, CityInfoRepository>();
             services.AddMvc()
                 .AddMvcOptions(o => o.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter()));
             //.AddJsonOptions(o =>
