@@ -59,6 +59,13 @@ namespace CityInfoAPI
             }
 
             cityInfoContext.EnsureSeeDataForContext();
+            AutoMapper.Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<Entities.City, Models.CityWithoutPointsOfInterestDto>();
+                cfg.CreateMap<Entities.PointOfInterest, Models.PointOfInterestDto>();
+                cfg.CreateMap<Entities.City, Models.CityDto>();
+                
+            });
 
             app.UseStatusCodePages();
             app.UseMvc();
