@@ -1,4 +1,5 @@
-﻿using CityInfoAPI.Models;
+﻿using AutoMapper;
+using CityInfoAPI.Models;
 using CityInfoAPI.Services;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -15,40 +16,101 @@ namespace CityInfoAPI.Controllers
     {
         private ILogger<PointOfInterestController> _logger;
         private IMailService _mailService;
+        private ICityInfoRepository _cityInfoRepository;
 
-        public PointOfInterestController(ILogger<PointOfInterestController> logger, IMailService mailService)
+        public PointOfInterestController(ILogger<PointOfInterestController> logger, IMailService mailService, ICityInfoRepository cityInfoRepository)
         {
             _logger = logger;
             _mailService = mailService;
+            _cityInfoRepository = cityInfoRepository;
         }
+
         [HttpGet("{cityId}/pointsofinterest")]
         public IActionResult GetPointsOfInterest(int cityId)
         {
-            var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
-            if(city == null)
+            // Use data memory
+            //var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+            //if(city == null)
+            //{
+            //    _logger.LogInformation($"City with id {cityId} wasn't found when accessing points of interest.");
+            //    return NotFound(new { message = "Not Found City"});
+            //}
+            //return Ok(new { number = city.PointOfInterest });
+
+            // =================================================== //
+
+            if (!_cityInfoRepository.CityExists(cityId))
             {
                 _logger.LogInformation($"City with id {cityId} wasn't found when accessing points of interest.");
-                return NotFound(new { message = "Not Found City"});
+                return NotFound();
             }
-            return Ok(new { number = city.PointOfInterest });
+
+            // Use map handmade
+            //var pointsOfInterest = _cityInfoRepository.GetPointsOfInterests(cityId);
+            //var pointsOfInterestResult = new List<PointOfInterestDto>();
+
+            //foreach(var point in pointsOfInterest)
+            //{
+            //    pointsOfInterestResult.Add(new PointOfInterestDto()
+            //    {
+            //        Id = point.Id,
+            //        Name = point.Name,
+            //        Description = point.Description
+            //    });
+            //}
+            //return Ok(pointsOfInterestResult);
+
+            // =================================================== //
+
+            var pointsOfInterest = _cityInfoRepository.GetPointsOfInterests(cityId);
+            var pointsOfInterestResult = Mapper.Map<IEnumerable<PointOfInterestDto>>(pointsOfInterest);
+            return Ok(pointsOfInterestResult);
         }
 
         [HttpGet("{cityId}/pointsofinterest/{id}", Name = "GetPointOfInterest")]
         public IActionResult GetPointOfInterest(int cityId, int id)
         {
-            var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
-            if (city == null)
+            // Use data memory
+            //var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+            //if (city == null)
+            //{
+            //    return NotFound(new { message = "Not Found City" });
+            //}
+
+            //var pointOfInterest = city.PointOfInterest.FirstOrDefault(p => p.Id == id);
+
+            //if(pointOfInterest == null)
+            //{
+            //    return NotFound(new { message = "Not Found PointOfInterest" });
+            //}
+            //return Ok(pointOfInterest);
+
+            // =================================================== //
+
+            if (!_cityInfoRepository.CityExists(cityId))
             {
-                return NotFound(new { message = "Not Found City" });
+                return NotFound();
             }
 
-            var pointOfInterest = city.PointOfInterest.FirstOrDefault(p => p.Id == id);
-
+            var pointOfInterest = _cityInfoRepository.GetPointOfInterestForCity(cityId, id);
             if(pointOfInterest == null)
             {
-                return NotFound(new { message = "Not Found PointOfInterest" });
+                return NotFound();
             }
-            return Ok(pointOfInterest);
+
+            // Use map handmade
+            //var pointOfInterestResult = new PointOfInterestDto()
+            //{
+            //    Id = pointOfInterest.Id,
+            //    Name = pointOfInterest.Name,
+            //    Description = pointOfInterest.Description
+            //};
+            //return Ok(pointOfInterestResult);
+
+            // =================================================== //
+
+            var pointOfInterestResult = Mapper.Map<PointOfInterestDto>(pointOfInterest);
+            return Ok(pointOfInterestResult);
         }
 
         [HttpPost("{cityId}/pointsofinterest")]
